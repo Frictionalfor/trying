@@ -43,10 +43,10 @@ const ActivityHeatmap = () => {
 
   const getIntensityClass = (score) => {
     if (score === 0) return 'bg-white/5'
-    if (score < 2) return 'bg-accent-1'
-    if (score < 5) return 'bg-accent-2'
-    if (score < 10) return 'bg-accent-3'
-    return 'bg-accent-4'
+    if (score < 2) return 'bg-accent-0'
+    if (score < 5) return 'bg-accent-1'
+    if (score < 10) return 'bg-accent-2'
+    return 'bg-accent-3'
   }
 
   // Group days into weeks for grid layout
@@ -91,7 +91,7 @@ const ActivityHeatmap = () => {
                   key={dayIndex}
                   className={`w-3 h-3 rounded-sm transition-all duration-200 ${
                     day 
-                      ? `${getIntensityClass(day.activityScore)} hover:scale-125 hover:ring-1 hover:ring-accent-3/50 cursor-pointer` 
+                      ? `${getIntensityClass(day.activityScore)} hover:scale-125 hover:ring-1 hover:ring-white/30 cursor-pointer` 
                       : 'bg-transparent'
                   }`}
                   onMouseEnter={() => day && setHoveredCell(day)}
@@ -121,10 +121,10 @@ const ActivityHeatmap = () => {
           <span className="font-light">Less</span>
           <div className="flex gap-1">
             <div className="w-3 h-3 rounded-sm bg-white/5" />
+            <div className="w-3 h-3 rounded-sm bg-accent-0" />
             <div className="w-3 h-3 rounded-sm bg-accent-1" />
             <div className="w-3 h-3 rounded-sm bg-accent-2" />
             <div className="w-3 h-3 rounded-sm bg-accent-3" />
-            <div className="w-3 h-3 rounded-sm bg-accent-4" />
           </div>
           <span className="font-light">More</span>
         </div>

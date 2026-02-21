@@ -164,8 +164,13 @@ const EnhancedPomodoroTimer = () => {
   const progress = (timeRemaining / (focusMinutes * 60)) * 100
   const isLastMinute = isActive && timeRemaining <= 60
 
+  // Calculate circle progress
+  const radius = 100
+  const circumference = 2 * Math.PI * radius
+  const strokeDashoffset = circumference - (progress / 100) * circumference
+
   return (
-    <div className="glass-card rounded-3xl p-8 animate-fade-in">
+    <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)' }}>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-text-primary">
           {isBreak ? 'Break Time' : 'Focus Timer'}
@@ -176,7 +181,7 @@ const EnhancedPomodoroTimer = () => {
             disabled={isActive}
             className={`px-3 py-1 rounded-full text-xs transition-all ${
               focusMinutes === 15 && !isBreak
-                ? 'bg-accent-3 text-white'
+                ? 'bg-accent-3 text-white glow-green-subtle'
                 : 'glass-card-light text-text-secondary hover:text-text-primary'
             } ${isActive ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
@@ -187,7 +192,7 @@ const EnhancedPomodoroTimer = () => {
             disabled={isActive}
             className={`px-3 py-1 rounded-full text-xs transition-all ${
               focusMinutes === 25 && !isBreak
-                ? 'bg-accent-3 text-white'
+                ? 'bg-accent-3 text-white glow-green-subtle'
                 : 'glass-card-light text-text-secondary hover:text-text-primary'
             } ${isActive ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
@@ -198,7 +203,7 @@ const EnhancedPomodoroTimer = () => {
             disabled={isActive}
             className={`px-3 py-1 rounded-full text-xs transition-all ${
               focusMinutes === 45 && !isBreak
-                ? 'bg-accent-3 text-white'
+                ? 'bg-accent-3 text-white glow-green-subtle'
                 : 'glass-card-light text-text-secondary hover:text-text-primary'
             } ${isActive ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
@@ -207,43 +212,111 @@ const EnhancedPomodoroTimer = () => {
         </div>
       </div>
 
-      {/* Timer Display */}
-      <div className="relative mb-8">
-        <motion.div
-          animate={{
-            scale: isLastMinute ? [1, 1.02, 1] : 1,
-          }}
-          transition={{
-            duration: 0.8,
-            repeat: isLastMinute ? Infinity : 0,
-            ease: "easeInOut"
-          }}
-          className="text-center"
-        >
-          <div className="text-7xl font-light text-text-primary tracking-wider mb-4">
-            {formatTime(timeRemaining)}
-          </div>
-          
-          {showCompletion && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-accent-3 font-medium text-lg"
-            >
-              {isBreak ? 'Break Complete!' : 'Session Complete!'}
-            </motion.div>
-          )}
-        </motion.div>
+      {/* Circular Timer Display */}
+      <div className="flex items-center justify-center mb-8">
+        <div className="relative" style={{ width: '220px', height: '220px' }}>
+          {/* SVG Circle Progress */}
+          <svg 
+            className="transform -rotate-90" 
+            width="220" 
+            height="220"
+            style={{ position: 'absolute', top: 0, left: 0 }}
+          >
+            <defs>
+              <linearGradient id="timerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#26a641" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#39d353" stopOpacity="0.5" />
+              </linearGradient>
+              <filter id="timerGlow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
 
-        {/* Progress Bar */}
-        <div className="relative h-2 bg-white/5 rounded-full overflow-hidden mt-6">
-          <motion.div
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.5, ease: "linear" }}
-            className={`absolute top-0 left-0 h-full rounded-full ${
-              isBreak ? 'bg-cyan-500' : 'bg-gradient-to-r from-accent-2 to-accent-3'
-            }`}
-          />
+            {/* Background circle (track) */}
+            <circle
+              cx="110"
+              cy="110"
+              r={radius}
+              stroke="rgba(255, 255, 255, 0.05)"
+              strokeWidth="6"
+              fill="none"
+            />
+            
+            {/* Progress circle */}
+            <circle
+              cx="110"
+              cy="110"
+              r={radius}
+              stroke="url(#timerGradient)"
+              strokeWidth="6"
+              fill="none"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              strokeLinecap="round"
+              filter="url(#timerGlow)"
+              style={{
+                transition: 'stroke-dashoffset 1s linear'
+              }}
+            />
+          </svg>
+
+          {/* Center content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            {/* Time display */}
+            <motion.div
+              animate={{
+                scale: isLastMinute ? [1, 1.05, 1] : 1,
+              }}
+              transition={{
+                duration: 0.8,
+                repeat: isLastMinute ? Infinity : 0,
+                ease: "easeInOut"
+              }}
+              className="text-center"
+            >
+              <div 
+                className="font-light font-mono tabular-nums"
+                style={{ 
+                  fontSize: '48px', 
+                  color: '#f5f5f5',
+                  fontWeight: 300,
+                  lineHeight: 1
+                }}
+              >
+                {formatTime(timeRemaining)}
+              </div>
+              
+              {/* Session label */}
+              <div 
+                className="mt-2 uppercase tracking-[0.15em]"
+                style={{
+                  fontSize: '11px',
+                  color: '#555555',
+                  fontWeight: 500
+                }}
+              >
+                {isBreak ? 'BREAK' : 'FOCUS'}
+              </div>
+            </motion.div>
+
+            {/* Completion message */}
+            {showCompletion && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="absolute text-sm font-medium"
+                style={{ color: '#ffffff' }}
+              >
+                {isBreak ? 'Break Complete!' : 'Session Complete!'}
+              </motion.div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -252,7 +325,7 @@ const EnhancedPomodoroTimer = () => {
         {!isActive ? (
           <button
             onClick={startSession}
-            className="flex-1 bg-accent-3 hover:bg-accent-4 text-white rounded-xl py-4 font-medium transition-all hover:scale-105"
+            className="flex-1 rounded-xl py-4 font-medium transition-all hover:scale-105 bg-accent-3 text-white glow-green-subtle"
           >
             Start Session
           </button>
@@ -266,7 +339,12 @@ const EnhancedPomodoroTimer = () => {
             </button>
             <button
               onClick={resetTimer}
-              className="flex-1 glass-card-light hover:bg-white/10 text-text-secondary hover:text-text-primary rounded-xl py-4 font-medium transition-all"
+              className="flex-1 rounded-xl py-4 font-medium transition-all hover:bg-accent-3/10"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(38, 166, 65, 0.5)',
+                color: '#ffffff'
+              }}
             >
               Reset
             </button>
