@@ -45,18 +45,18 @@ const LandingPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="pt-16 pb-10 px-6"
+          className="pt-8 md:pt-16 pb-6 md:pb-10 px-4 md:px-6"
         >
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
               <motion.img 
                 src="/icon.svg" 
                 alt="SoutaOS" 
-                className="w-12 h-12 opacity-90"
+                className="w-10 h-10 md:w-12 md:h-12 opacity-90"
                 whileHover={{ scale: 1.05, rotate: 5 }}
                 transition={{ duration: 0.3 }}
               />
-              <h1 className="text-[2.25rem] font-extrabold text-text-primary tracking-[0.03em]" style={{ marginTop: '3px' }}>
+              <h1 className="text-[1.75rem] md:text-[2.25rem] font-extrabold text-text-primary tracking-[0.03em]" style={{ marginTop: '3px' }}>
                 Souta<span className="text-accent-3">OS</span>
               </h1>
             </div>
@@ -64,19 +64,19 @@ const LandingPage = () => {
         </motion.div>
 
         {/* Hero Section */}
-        <div className="flex items-center justify-center px-6 pt-8 pb-16" style={{ minHeight: '70vh' }}>
+        <div className="flex items-center justify-center px-4 md:px-6 pt-4 md:pt-8 pb-8 md:pb-16" style={{ minHeight: '60vh' }}>
           <div className="max-w-7xl mx-auto w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <h2 className="text-6xl font-semibold text-text-primary mb-8 leading-tight tracking-wide">
+                <h2 className="text-3xl md:text-6xl font-semibold text-text-primary mb-4 md:mb-8 leading-tight tracking-wide">
                   A workspace for uninterrupted focus.
                 </h2>
                 
-                <p className="text-lg text-text-secondary font-light leading-relaxed mb-10 opacity-90">
+                <p className="text-base md:text-lg text-text-secondary font-light leading-relaxed mb-6 md:mb-10 opacity-90">
                   Task management, deep focus sessions, and progress tracking in one place.
                 </p>
                 
@@ -85,7 +85,7 @@ const LandingPage = () => {
                     onClick={handleLaunchApp}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="relative glass-card-light px-10 py-3.5 rounded-full text-base font-medium text-text-primary transition-all duration-300 overflow-hidden group"
+                    className="relative glass-card-light px-8 md:px-10 py-3 md:py-3.5 rounded-full text-sm md:text-base font-medium text-text-primary transition-all duration-300 overflow-hidden group"
                     style={{
                       boxShadow: '0 4px 20px rgba(38, 166, 65, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.12)'
@@ -123,10 +123,10 @@ const LandingPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="py-16 px-6"
+          className="py-8 md:py-16 px-4 md:px-6"
         >
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {/* Task Board Preview */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -138,14 +138,14 @@ const LandingPage = () => {
                   scale: 1.02,
                   boxShadow: '0 12px 32px rgba(38, 166, 65, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1)'
                 }}
-                className="glass-card rounded-xl p-6 transition-all duration-300"
+                className="glass-card rounded-xl p-4 md:p-6 transition-all duration-300"
                 style={{
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
                 }}
               >
                 <div>
-                  <div className="text-xs text-accent-3 font-medium mb-4 tracking-wider">TASK BOARD</div>
-                  <div className="space-y-2.5">
+                  <div className="text-xs text-accent-3 font-medium mb-3 md:mb-4 tracking-wider">TASK BOARD</div>
+                  <div className="space-y-2 md:space-y-2.5">
                     <motion.div 
                       whileHover={{ x: 2 }}
                       transition={{ duration: 0.2 }}
@@ -182,7 +182,7 @@ const LandingPage = () => {
                   scale: 1.02,
                   boxShadow: '0 12px 32px rgba(38, 166, 65, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1)'
                 }}
-                className="glass-card rounded-xl p-6 transition-all duration-300 relative overflow-hidden"
+                className="glass-card rounded-xl p-4 md:p-6 transition-all duration-300 relative overflow-hidden"
                 style={{
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
                 }}
@@ -200,9 +200,9 @@ const LandingPage = () => {
                   className="absolute inset-0 bg-gradient-to-br from-accent-3/10 via-cyan-500/5 to-transparent rounded-full blur-2xl"
                 />
                 <div className="relative">
-                  <div className="text-xs text-accent-3 font-medium mb-4 tracking-wider">POMODORO</div>
+                  <div className="text-xs text-accent-3 font-medium mb-3 md:mb-4 tracking-wider">POMODORO</div>
                   <div className="flex items-center justify-center py-2">
-                    <svg className="w-32 h-32" viewBox="0 0 100 100">
+                    <svg className="w-24 h-24 md:w-32 md:h-32" viewBox="0 0 100 100">
                       <defs>
                         <linearGradient id="miniGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" stopColor="#26a641" stopOpacity="0.8" />
@@ -240,7 +240,7 @@ const LandingPage = () => {
                     </svg>
                   </div>
                   <div className="text-center mt-1">
-                    <div className="text-xl font-light text-text-primary">25:00</div>
+                    <div className="text-lg md:text-xl font-light text-text-primary">25:00</div>
                   </div>
                 </div>
               </motion.div>
@@ -256,13 +256,13 @@ const LandingPage = () => {
                   scale: 1.02,
                   boxShadow: '0 12px 32px rgba(38, 166, 65, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1)'
                 }}
-                className="glass-card rounded-xl p-6 transition-all duration-300"
+                className="glass-card rounded-xl p-4 md:p-6 transition-all duration-300"
                 style={{
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
                 }}
               >
-                <div className="text-xs text-accent-3 font-medium mb-4 tracking-wider">90-DAY HEATMAP</div>
-                <div className="grid grid-cols-10 gap-1.5">
+                <div className="text-xs text-accent-3 font-medium mb-3 md:mb-4 tracking-wider">90-DAY HEATMAP</div>
+                <div className="grid grid-cols-10 gap-1 md:gap-1.5">
                   {[...Array(50)].map((_, i) => {
                     const intensity = Math.random()
                     const color = intensity > 0.7 ? 'bg-accent-3' : 
@@ -289,10 +289,10 @@ const LandingPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="py-16 px-6"
+          className="py-8 md:py-16 px-4 md:px-6"
         >
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -305,13 +305,13 @@ const LandingPage = () => {
                     scale: 1.02,
                     boxShadow: '0 12px 32px rgba(38, 166, 65, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1)'
                   }}
-                  className="glass-card rounded-xl p-7 transition-all duration-300 cursor-pointer"
+                  className="glass-card rounded-xl p-5 md:p-7 transition-all duration-300 cursor-pointer"
                   style={{
                     boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
                     background: 'rgba(255, 255, 255, 0.05)',
                   }}
                 >
-                  <h3 className="text-lg font-semibold text-text-primary mb-3">
+                  <h3 className="text-base md:text-lg font-semibold text-text-primary mb-2 md:mb-3">
                     {feature.title}
                   </h3>
                   <p className="text-sm text-text-secondary font-light leading-relaxed opacity-85">
@@ -329,17 +329,17 @@ const LandingPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="py-20 px-6"
+          className="py-12 md:py-20 px-4 md:px-6"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-4xl font-semibold text-text-primary mb-8 leading-tight">
+            <h3 className="text-2xl md:text-4xl font-semibold text-text-primary mb-6 md:mb-8 leading-tight">
               Built for focused builders.
             </h3>
             <motion.button
               onClick={handleLaunchApp}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="relative glass-card-light px-12 py-4 rounded-full text-base font-medium text-text-primary transition-all duration-300 overflow-hidden group"
+              className="relative glass-card-light px-10 md:px-12 py-3.5 md:py-4 rounded-full text-sm md:text-base font-medium text-text-primary transition-all duration-300 overflow-hidden group"
               style={{
                 boxShadow: '0 4px 20px rgba(38, 166, 65, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                 border: '1px solid rgba(255, 255, 255, 0.12)'
@@ -362,7 +362,7 @@ const LandingPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="py-12 px-6"
+          className="py-8 md:py-12 px-4 md:px-6"
         >
           <div className="max-w-7xl mx-auto flex justify-center">
             <div className="glass-card rounded-full px-6 py-3 inline-flex items-center gap-3">
