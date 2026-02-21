@@ -76,7 +76,9 @@ const Header = () => {
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <img src="/icon.svg" alt="SoutaOS" className="w-9 h-9 opacity-90" />
-          <h1 className="text-3xl font-bold text-text-primary tracking-wide">SoutaOS</h1>
+          <h1 className="text-3xl font-extrabold text-text-primary tracking-[0.03em]">
+            Souta<span className="text-accent-3">OS</span>
+          </h1>
         </div>
         
         <div className="text-right">
