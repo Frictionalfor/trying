@@ -15,9 +15,10 @@ const TaskGrid = () => {
   }
 
   const displayTasks = tasks.slice(0, 56)
+  const hasScroll = displayTasks.length > 6
 
   return (
-    <div className="glass-card rounded-3xl p-6 h-full flex flex-col animate-slide-up">
+    <div className="glass-card rounded-3xl p-6 animate-slide-up">
       <form onSubmit={handleSubmit} className="mb-5">
         <input
           type="text"
@@ -28,13 +29,17 @@ const TaskGrid = () => {
         />
       </form>
 
-      <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+      <div 
+        className={`pr-2 ${hasScroll ? 'overflow-y-auto custom-scrollbar' : ''}`}
+        style={{ maxHeight: 'calc(6 * 88px)' }}
+      >
         <div className="grid grid-cols-1 gap-3">
           {displayTasks.map((task, index) => (
             <TaskCard key={task.id} task={task} index={index} />
           ))}
           {displayTasks.length === 0 && (
             <div className="text-center py-16">
+              <div className="text-5xl opacity-15 mb-4">□</div>
               <p className="text-text-secondary text-sm font-light mb-2">No tasks yet</p>
               <p className="text-text-secondary/60 text-xs font-light">Add one to get started</p>
             </div>

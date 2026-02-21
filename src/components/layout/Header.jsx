@@ -91,26 +91,26 @@ const Header = () => {
   const progress = calculateProgress()
 
   return (
-    <div className="glass-card rounded-3xl p-8 animate-fade-in relative overflow-hidden">
+    <div className="glass-card rounded-3xl p-8 pt-6 animate-fade-in relative overflow-hidden">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <img src="/icon.svg" alt="SoutaOS" className="w-8 h-8 opacity-90" />
-          <h1 className="text-2xl font-bold text-text-primary tracking-wide">SoutaOS</h1>
+          <img src="/icon.svg" alt="SoutaOS" className="w-9 h-9 opacity-90" />
+          <h1 className="text-3xl font-bold text-text-primary tracking-wide">SoutaOS</h1>
         </div>
         
         <div className="text-right">
-          <p className="text-5xl font-light text-text-primary tracking-wider tabular-nums">
+          <p className="text-4xl font-light text-text-primary tracking-wider tabular-nums">
             {formatTime()}
           </p>
-          <p className="text-base font-light text-text-secondary opacity-70 mt-2 tracking-wide">
+          <p className="text-base font-light text-text-primary opacity-80 mt-1.5 tracking-wide">
             {formatDate()}
           </p>
         </div>
       </div>
       
       <div className="mb-6">
-        <p className="text-text-primary text-lg mb-2">{getGreeting()}</p>
-        <p className="text-text-secondary text-base font-light italic opacity-70 mb-4">{quote}</p>
+        <p className="text-xl font-medium text-text-primary mb-2">{getGreeting()}</p>
+        <p className="text-base font-light text-text-secondary italic opacity-80 mb-4">{quote}</p>
         
         <div className="mt-4">
           <div className="flex items-center justify-between mb-2">
@@ -178,11 +178,11 @@ const StatPill = ({ label, value, accent, glow }) => {
 
   return (
     <div 
-      className={`glass-card-light rounded-full px-5 py-2.5 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 ${
+      className={`glass-card-light rounded-full px-6 py-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 ${
         glow ? 'glow-green' : ''
       }`}
     >
-      <span className="text-text-secondary text-xs mr-2 font-light">{label}</span>
+      <span className="text-text-secondary text-xs mr-2.5 font-light tracking-wide">{label}</span>
       <span className={`text-sm font-semibold ${accent ? 'text-accent-3' : 'text-text-primary'}`}>
         {displayValue}
       </span>

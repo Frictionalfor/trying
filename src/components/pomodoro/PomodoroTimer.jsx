@@ -121,7 +121,7 @@ const PomodoroTimer = () => {
 
   return (
     <div className="glass-card rounded-3xl p-8 animate-slide-up" style={{ animationDelay: '150ms' }}>
-      <h3 className="text-xs font-light text-text-secondary mb-6 tracking-widest opacity-70 text-center">
+      <h3 className="text-sm font-medium text-text-primary mb-6 tracking-wider opacity-90 text-center">
         Pomodoro Timer
       </h3>
 

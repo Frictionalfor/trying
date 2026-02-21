@@ -7,7 +7,7 @@ A minimal personal productivity operating system with premium dark aesthetic.
 - Task Management (pending → processing → completed)
 - Circular Pomodoro Timer with SVG progress ring
 - YouTube Focus Video Player
-- Activity Heatmap (GitHub-style yearly grid)
+- Activity Heatmap (90-day productivity tracking)
 - Performance Stats in Header Pills
 - localStorage persistence
 - Single-page application
@@ -17,6 +17,7 @@ A minimal personal productivity operating system with premium dark aesthetic.
 
 - React 18 (Vite)
 - TailwindCSS
+- Framer Motion
 - No backend, no auth, no database
 
 ## Design Philosophy
@@ -46,14 +47,13 @@ npm run dev
   - Left: Tasks + YouTube Video
   - Right: Pomodoro Timer + Activity Heatmap
 
-## Pomodoro Timer
+## Activity Heatmap
 
-- Circular SVG progress ring
-- Three modes: Focus (25m), Short (5m), Long (15m)
-- Smooth countdown animation
-- Green glow when active
-- Pulse animation on completion
-- Persists across page refreshes
+- Tracks last 90 days of productivity
+- Combined metric: completed tasks + focus minutes
+- Intensity levels: 5 shades from grey to green
+- Hover tooltips show daily stats
+- Updates automatically when tasks complete or pomodoro sessions finish
 
 ## Color System
 
@@ -77,8 +77,12 @@ src/
 │   │   └── VideoPlayer.jsx
 │   ├── pomodoro/
 │   │   └── PomodoroTimer.jsx
-│   └── heatmap/
-│       └── Heatmap.jsx
+│   ├── heatmap/
+│   │   └── ActivityHeatmap.jsx
+│   └── landing/
+│       ├── LandingPage.jsx
+│       ├── FocusClock.jsx
+│       └── AnimatedBackground.jsx
 ├── context/
 │   └── AppContext.jsx
 ├── utils/
