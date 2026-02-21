@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
-import { getTodayDate } from '../../utils/date'
 
 const quotes = [
   'Focus on what matters',
@@ -59,26 +58,8 @@ const Header = () => {
     const processing = tasks.filter(t => t.status === 'processing').length
     const sessions = Object.values(pomodoroStats).reduce((sum, count) => sum + count, 0)
     const focusMinutes = sessions * 25
-    
-    const dates = Object.keys(pomodoroStats).sort()
-    let streak = 0
-    const today = getTodayDate()
-    
-    if (dates.length > 0) {
-      const lastDate = dates[dates.length - 1]
-      if (lastDate === today) {
-        streak = 1
-        for (let i = dates.length - 2; i >= 0; i--) {
-          const prevDate = new Date(dates[i + 1])
-          const currDate = new Date(dates[i])
-          const diffDays = Math.floor((prevDate - currDate) / (1000 * 60 * 60 * 24))
-          if (diffDays === 1) streak++
-          else break
-        }
-      }
-    }
 
-    return { totalTasks, pending, done, processing, focusMinutes, sessions, streak }
+    return { totalTasks, pending, done, processing, focusMinutes, sessions }
   }
 
   const stats = calculateStats()
@@ -141,7 +122,6 @@ const Header = () => {
           <StatPill label="Done" value={stats.done} accent={stats.done > 0} />
           <StatPill label="Focus" value={`${stats.focusMinutes}m`} />
           <StatPill label="Sessions" value={stats.sessions} />
-          <StatPill label="Streak" value={`${stats.streak}d`} accent={stats.streak > 0} glow={stats.streak > 0} />
         </div>
       </div>
     </div>
