@@ -164,18 +164,18 @@ const EnhancedPomodoroTimer = () => {
   const progress = (timeRemaining / (focusMinutes * 60)) * 100
   const isLastMinute = isActive && timeRemaining <= 60
 
-  // Calculate circle progress
-  const radius = 100
+  // Calculate circle progress (adjusted for mobile size)
+  const radius = 82
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (progress / 100) * circumference
 
   return (
-    <div className="glass-card rounded-3xl p-8 animate-fade-in" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)' }}>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-text-primary">
+    <div className="glass-card rounded-3xl p-4 md:p-8 animate-fade-in" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)' }}>
+      <div className="flex items-center justify-between mb-4 md:mb-6">
+        <h2 className="text-xl md:text-2xl font-bold text-text-primary">
           {isBreak ? 'Break Time' : 'Focus Timer'}
         </h2>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5 md:gap-2">
           <button
             onClick={() => setFocusMinutes(15)}
             disabled={isActive}
@@ -213,13 +213,13 @@ const EnhancedPomodoroTimer = () => {
       </div>
 
       {/* Circular Timer Display */}
-      <div className="flex items-center justify-center mb-8">
-        <div className="relative" style={{ width: '220px', height: '220px' }}>
+      <div className="flex items-center justify-center mb-6 md:mb-8">
+        <div className="relative" style={{ width: '180px', height: '180px' }}>
           {/* SVG Circle Progress */}
           <svg 
             className="transform -rotate-90" 
-            width="220" 
-            height="220"
+            width="180" 
+            height="180"
             style={{ position: 'absolute', top: 0, left: 0 }}
           >
             <defs>
@@ -239,21 +239,21 @@ const EnhancedPomodoroTimer = () => {
 
             {/* Background circle (track) */}
             <circle
-              cx="110"
-              cy="110"
-              r={radius}
+              cx="90"
+              cy="90"
+              r="82"
               stroke="rgba(255, 255, 255, 0.05)"
-              strokeWidth="6"
+              strokeWidth="5"
               fill="none"
             />
             
             {/* Progress circle */}
             <circle
-              cx="110"
-              cy="110"
-              r={radius}
+              cx="90"
+              cy="90"
+              r="82"
               stroke="url(#timerGradient)"
-              strokeWidth="6"
+              strokeWidth="5"
               fill="none"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
@@ -282,7 +282,7 @@ const EnhancedPomodoroTimer = () => {
               <div 
                 className="font-light font-mono tabular-nums"
                 style={{ 
-                  fontSize: '48px', 
+                  fontSize: '36px', 
                   color: '#f5f5f5',
                   fontWeight: 300,
                   lineHeight: 1
@@ -295,7 +295,7 @@ const EnhancedPomodoroTimer = () => {
               <div 
                 className="mt-2 uppercase tracking-[0.15em]"
                 style={{
-                  fontSize: '11px',
+                  fontSize: '10px',
                   color: '#555555',
                   fontWeight: 500
                 }}
@@ -310,7 +310,7 @@ const EnhancedPomodoroTimer = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                className="absolute text-sm font-medium"
+                className="absolute text-xs md:text-sm font-medium"
                 style={{ color: '#ffffff' }}
               >
                 {isBreak ? 'Break Complete!' : 'Session Complete!'}
@@ -353,7 +353,7 @@ const EnhancedPomodoroTimer = () => {
       </div>
 
       {/* Keyboard Shortcuts Hint */}
-      <div className="mt-4 text-center text-xs text-text-secondary opacity-60">
+      <div className="mt-4 text-center text-xs text-text-secondary opacity-60 hidden md:block">
         <span className="inline-block mr-3">Space: {isActive ? 'Pause' : 'Start'}</span>
         <span className="inline-block mr-3">R: Reset</span>
         <span className="inline-block">Esc: Stop</span>

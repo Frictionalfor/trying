@@ -77,8 +77,8 @@ const ActivityHeatmap = () => {
   }, [heatmapData])
 
   return (
-    <div className="glass-card rounded-3xl p-6 animate-slide-up" style={{ animationDelay: '250ms' }}>
-      <h3 className="text-sm font-medium text-text-primary mb-4 tracking-wider opacity-90">
+    <div className="glass-card rounded-3xl p-4 md:p-6 animate-slide-up" style={{ animationDelay: '250ms' }}>
+      <h3 className="text-sm font-medium text-text-primary mb-3 md:mb-4 tracking-wider opacity-90">
         Activity Heatmap
       </h3>
       

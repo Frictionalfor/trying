@@ -83,45 +83,45 @@ const DashboardOverview = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.1 }}
       className="glass-card rounded-2xl mb-6"
-      style={{ padding: '32px 40px' }}
+      style={{ padding: '20px 24px' }}
     >
       {/* Top Row: Brand + Clock */}
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex items-start justify-between mb-6 md:mb-8 gap-4">
         {/* Left: SoutaOS Logo - Bigger, no hamburger */}
-        <div className="flex items-center gap-3">
-          <img src="/icon.svg" alt="SoutaOS" className="w-7 h-7 opacity-80" />
-          <h1 className="text-[28px] font-bold tracking-[0.08em]">
+        <div className="flex items-center gap-2 md:gap-3">
+          <img src="/icon.svg" alt="SoutaOS" className="w-6 h-6 md:w-7 md:h-7 opacity-80" />
+          <h1 className="text-xl md:text-[28px] font-bold tracking-[0.08em]">
             <span style={{ color: '#f5f5f5' }}>SOUTA</span>
             <span className="text-accent-3">OS</span>
           </h1>
         </div>
 
         {/* Right: Date, Day & Time */}
-        <div className="text-right">
-          <div className="text-2xl font-mono tracking-tight tabular-nums text-text-primary font-light">
+        <div className="text-right flex-shrink-0">
+          <div className="text-lg md:text-2xl font-mono tracking-tight tabular-nums text-text-primary font-light">
             {formatTime()}
           </div>
-          <div className="text-sm text-text-secondary/70 mt-1 font-medium">
+          <div className="text-xs md:text-sm text-text-secondary/70 mt-0.5 md:mt-1 font-medium">
             {formatDay()}
           </div>
-          <div className="text-sm text-text-secondary/60 mt-0.5">
+          <div className="text-xs md:text-sm text-text-secondary/60 mt-0.5">
             {formatDate()}
           </div>
         </div>
       </div>
 
       {/* Greeting Section */}
-      <div className="mb-6">
-        <h2 className="text-3xl font-semibold text-text-primary mb-2">
+      <div className="mb-4 md:mb-6">
+        <h2 className="text-2xl md:text-3xl font-semibold text-text-primary mb-2">
           {getGreeting()}
         </h2>
-        <p className="text-base text-text-secondary font-light opacity-70">
+        <p className="text-sm md:text-base text-text-secondary font-light opacity-70">
           {quote}
         </p>
       </div>
 
       {/* Progress Section */}
-      <div className="mb-6">
+      <div className="mb-4 md:mb-6">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium text-text-secondary">Today's Progress</span>
           <span className="text-sm font-semibold text-text-primary">{progress}%</span>
@@ -144,7 +144,7 @@ const DashboardOverview = () => {
       </div>
 
       {/* Stats Pills Row */}
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-2 md:gap-3">
         <StatPill label="Tasks" value={stats.totalTasks} />
         <StatPill label="Pending" value={stats.pending} />
         <StatPill label="Done" value={stats.done} accent={stats.done > 0} />
@@ -189,9 +189,9 @@ const StatPill = ({ label, value, accent }) => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4 }}
       whileHover={{ scale: 1.05, y: -2 }}
-      className="glass-card-light rounded-full px-5 py-2.5 transition-all duration-300"
+      className="glass-card-light rounded-full px-4 md:px-5 py-2 md:py-2.5 transition-all duration-300"
     >
-      <span className="text-text-secondary text-xs mr-2 font-light tracking-wide">{label}</span>
+      <span className="text-text-secondary text-xs mr-1.5 md:mr-2 font-light tracking-wide">{label}</span>
       <span className={`text-sm font-semibold ${accent ? 'text-accent-3 glow-green-ring' : 'text-text-primary'}`}>
         {displayValue}
       </span>
