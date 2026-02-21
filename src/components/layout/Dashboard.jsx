@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import TaskGrid from '../tasks/TaskGrid'
 import VideoPlayer from '../video/VideoPlayer'
-import PomodoroTimer from '../pomodoro/PomodoroTimer'
+import EnhancedPomodoroTimer from '../pomodoro/EnhancedPomodoroTimer'
 import ActivityHeatmap from '../heatmap/ActivityHeatmap'
 
 const Dashboard = () => {
@@ -25,7 +25,7 @@ const Dashboard = () => {
           </div>
 
           <div className="space-y-6">
-            <PomodoroTimer />
+            <EnhancedPomodoroTimer />
             <ActivityHeatmap />
           </div>
         </div>

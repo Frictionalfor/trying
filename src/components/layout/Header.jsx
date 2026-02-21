@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
+import SettingsModal from '../common/SettingsModal'
 
 const quotes = [
   'Focus on what matters',
@@ -14,8 +16,10 @@ const quotes = [
 
 const Header = () => {
   const { tasks, pomodoroStats } = useApp()
+  const navigate = useNavigate()
   const [quote, setQuote] = useState('')
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [showSettings, setShowSettings] = useState(false)
 
   useEffect(() => {
     setQuote(quotes[Math.floor(Math.random() * quotes.length)])
@@ -72,6 +76,7 @@ const Header = () => {
   const progress = calculateProgress()
 
   return (
+    <>
     <div className="glass-card rounded-3xl p-8 pt-6 animate-fade-in relative overflow-hidden">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
@@ -81,13 +86,31 @@ const Header = () => {
           </h1>
         </div>
         
-        <div className="text-right">
-          <p className="text-4xl font-light text-text-primary tracking-wider tabular-nums">
-            {formatTime()}
-          </p>
-          <p className="text-base font-light text-text-primary opacity-80 mt-1.5 tracking-wide">
-            {formatDate()}
-          </p>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setShowSettings(true)}
+            className="glass-card-light px-4 py-2 rounded-full text-xs font-medium text-text-secondary hover:text-text-primary transition-all duration-300 hover:scale-105"
+            aria-label="Open settings"
+          >
+            ⚙️ Settings
+          </button>
+          
+          <button
+            onClick={() => navigate('/')}
+            className="glass-card-light px-4 py-2 rounded-full text-xs font-medium text-text-secondary hover:text-text-primary transition-all duration-300 hover:scale-105"
+            aria-label="Back to landing page"
+          >
+            ← Landing
+          </button>
+          
+          <div className="text-right">
+            <p className="text-4xl font-light text-text-primary tracking-wider tabular-nums">
+              {formatTime()}
+            </p>
+            <p className="text-base font-light text-text-primary opacity-80 mt-1.5 tracking-wide">
+              {formatDate()}
+            </p>
+          </div>
         </div>
       </div>
       
@@ -127,6 +150,9 @@ const Header = () => {
         </div>
       </div>
     </div>
+    
+    <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />
+    </>
   )
 }
 

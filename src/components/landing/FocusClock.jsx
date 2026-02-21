@@ -221,6 +221,10 @@ const FocusClock = () => {
       onMouseLeave={() => setIsHovering(false)}
       className="relative w-96 h-96 flex items-center justify-center cursor-pointer select-none"
       onMouseDown={handleMouseDown}
+      role="timer"
+      aria-label={`Focus timer: ${formatTime(timeRemaining)} remaining`}
+      aria-live="polite"
+      tabIndex={0}
     >
       {/* Outer glow aura - intensity based on progress */}
       <motion.div

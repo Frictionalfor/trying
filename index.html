@@ -4,10 +4,48 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SoutaOS</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>SoutaOS - A workspace for uninterrupted focus</title>
+    <meta name="title" content="SoutaOS - A workspace for uninterrupted focus" />
+    <meta name="description" content="Task management, deep focus sessions, and progress tracking in one minimal workspace. Built for focused builders." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://soutaos.vercel.app/" />
+    <meta property="og:title" content="SoutaOS - A workspace for uninterrupted focus" />
+    <meta property="og:description" content="Task management, deep focus sessions, and progress tracking in one minimal workspace." />
+    <meta property="og:image" content="/icon.svg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://soutaos.vercel.app/" />
+    <meta property="twitter:title" content="SoutaOS - A workspace for uninterrupted focus" />
+    <meta property="twitter:description" content="Task management, deep focus sessions, and progress tracking in one minimal workspace." />
+    <meta property="twitter:image" content="/icon.svg" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0a0a" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/icon.svg" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered:', registration))
+            .catch(error => console.log('SW registration failed:', error))
+        })
+      }
+    </script>
   </body>
 </html>
